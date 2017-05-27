@@ -8,7 +8,7 @@
 #include "SIpLayer.h"
 #include <stdio.h>
 #include <string.h>
-#include "Utils.h"
+#include "ByteUtils.h"
 
 SIpLayer::SIpLayer() :
 		m_eIpVersion(eIpV4),
@@ -90,6 +90,9 @@ HRESULT SIpLayer::ProcessPacketIpV4(const BU8* pi_pIpDatagramBuff)
 
 	m_nHeaderLength = tmp & 0x0F;
 	memcpy(&m_nTotalLength, &pi_pIpDatagramBuff[2], 2);
+	Reverse16bit(m_nTotalLength);
+
+	printf("%02x %02x\n", pi_pIpDatagramBuff[2], pi_pIpDatagramBuff[3]);
 
 	memcpy(&m_nTimeToLive, &pi_pIpDatagramBuff[8], 1);
 
@@ -104,7 +107,13 @@ HRESULT SIpLayer::ProcessPacketIpV4(const BU8* pi_pIpDatagramBuff)
 
 	//if(m_srcIpAddress.ToString() == "192.168.221.128")
 	//{
+	static bool b = false;
+	if(!b)
+	{
+		b = true;
 		std::cout << "===============================" << std::endl;
+
+		//PrintHexDump(const_cast<BU8*>(pi_pIpDatagramBuff), m_nTotalLength);
 
 		std::cout << "Src IP: " << m_srcIpAddress.ToString() << std::endl;
 		std::cout << "Dest IP: " << m_destIpAddress.ToString() << std::endl;
@@ -120,7 +129,7 @@ HRESULT SIpLayer::ProcessPacketIpV4(const BU8* pi_pIpDatagramBuff)
 			std::cout << "ip header has Options" << std::endl;
 		}
 		std::cout << "===============================" << std::endl;
-	//}
+	}
 
 	return hRes;
 }

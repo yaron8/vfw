@@ -6,6 +6,7 @@
  */
 
 #include "CTcpTransportLayer.h"
+#include "ByteUtils.h"
 
 CTcpTransportLayer::CTcpTransportLayer() :
 		m_nSequenceNumber(0),
@@ -31,9 +32,14 @@ HRESULT CTcpTransportLayer::Init(BU8* pi_pTransportLayerDatagram)
 	memcpy(&m_nSrcPort, pi_pTransportLayerDatagram, 2);
 	memcpy(&m_nDestPort, pi_pTransportLayerDatagram + 2, 2);
 
+	Reverse16bit(m_nSrcPort);
+	Reverse16bit(m_nDestPort);
+
 	memcpy(&m_nSequenceNumber, pi_pTransportLayerDatagram + 4, 4);
+	Reverse32bit(m_nSequenceNumber);
 
 	memcpy(&m_nAckNumber, pi_pTransportLayerDatagram + 8, 4);
+	Reverse32bit(m_nAckNumber);
 
 	BU8 tmp;
 	memcpy(&tmp, pi_pTransportLayerDatagram + 12, 1);
@@ -45,10 +51,13 @@ HRESULT CTcpTransportLayer::Init(BU8* pi_pTransportLayerDatagram)
 	memcpy(&m_nFlags, pi_pTransportLayerDatagram + 13, 1);
 
 	memcpy(&m_nWindowSize, pi_pTransportLayerDatagram + 14, 2);
+	Reverse16bit(m_nWindowSize);
 
 	memcpy(&m_nChecksum, pi_pTransportLayerDatagram + 16, 2);
+	Reverse16bit(m_nChecksum);
 
 	memcpy(&m_nUrgentPointer, pi_pTransportLayerDatagram + 18, 2);
+	Reverse16bit(m_nUrgentPointer);
 
 	return hRes;
 }

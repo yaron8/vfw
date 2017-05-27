@@ -16,6 +16,7 @@
 #include "CNetworkTypes.h"
 #include "CTransportLayerProtocol.h"
 #include "CPacketDetails.h"
+#include "ByteUtils.h"
 
 
 
