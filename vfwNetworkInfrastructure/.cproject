@@ -30,7 +30,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.681081421" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/vfwInfrastructure}&quot;"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.other.other.1643247499" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0  -std=c++14" valueType="string"/>
+								<option id="gnu.cpp.compiler.option.other.other.1643247499" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0  -std=c++14" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1604071469" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1415792581" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker"/>

@@ -12,20 +12,25 @@
 
 enum EIpType
 {
-	eIpV4,
-	eIpV6
+	eIpV4 = 4,
+	eIpV6 = 6
 };
 
-#define IPV4_BYTES_LENGTH	8
+#define IPV4_BYTES_LENGTH	4
 #define IPV6_BYTES_LENGTH	16
 
 class CIpAddress {
 public:
+	CIpAddress();
 	CIpAddress(BU8* pi_pIpAddress, const BU8& pi_nLength);
 	CIpAddress(BU8* pi_pIpAddress, const EIpType eIpType);
 	virtual ~CIpAddress();
 
+	HRESULT SetIpAddress(BU8* pi_pIpAddress, const BU8 pi_nLength);
+
 	CString ToString();
+
+	bool IsEmpty();
 
 private:
 	EIpType m_eIpType;

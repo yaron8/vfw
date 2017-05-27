@@ -13,6 +13,7 @@
 
 #include "CBaseFacade.h"
 #include "CNetworkTypes.h"
+#include "CPacketDetails.h"
 
 void ProcessPacket(BU8* , const BU32&);
 void PrintIpHeader(unsigned char* , int);
@@ -68,7 +69,8 @@ int main()
             return 1;
         }
         //Now process the packet
-        ProcessPacket(pBuffer , data_size);
+        //ProcessPacket(pBuffer , data_size);
+        CPacketDetails packetDetails(pBuffer, data_size);
     }
     close(sock_raw);
     std::cout << "Finished" << std::endl;

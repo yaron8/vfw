@@ -9,7 +9,8 @@
 #define CBASEFACADE_H_
 
 #include "CTypes.h"
-
+#include <stdio.h>
+#include <string.h>
 
 
 #endif /* CBASEFACADE_H_ */

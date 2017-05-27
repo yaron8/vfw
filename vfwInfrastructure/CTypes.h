@@ -28,6 +28,7 @@ typedef std::string 	CString;
 
 // HRESULT
 typedef BU8 HRESULT;
+
 #define H_SUCCESS	0;
 #define H_FAIL		1;
 #define H_IGNORE	2;
