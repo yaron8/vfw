@@ -15,7 +15,8 @@ SIpLayer::SIpLayer() :
 		m_nHeaderLength(0),
 		m_nTotalLength(0),
 		m_nTimeToLive(0),
-		m_nTransportLayerProtocol(0)
+		m_nTransportLayerProtocol(0),
+		m_nTransportLayerOffset(0)
 {
 
 }
@@ -101,8 +102,8 @@ HRESULT SIpLayer::ProcessPacketIpV4(const BU8* pi_pIpDatagramBuff)
 	m_srcIpAddress.SetIpAddress(pSrcIp, IPV4_BYTES_LENGTH);
 	m_destIpAddress.SetIpAddress(pDestIp, IPV4_BYTES_LENGTH);
 
-	if(m_destIpAddress.ToString() == "192.168.221.128")
-	{
+	//if(m_srcIpAddress.ToString() == "192.168.221.128")
+	//{
 		std::cout << "===============================" << std::endl;
 
 		std::cout << "Src IP: " << m_srcIpAddress.ToString() << std::endl;
@@ -111,13 +112,15 @@ HRESULT SIpLayer::ProcessPacketIpV4(const BU8* pi_pIpDatagramBuff)
 		std::cout << "Total Length: " << BU32(m_nTotalLength) << std::endl;
 		std::cout << "Transport Protocol: " << BU32(m_nTransportLayerProtocol) << std::endl;
 
+		m_nTransportLayerOffset = 20;
 		if(m_nHeaderLength > 5)
 		{
 			//TODO: ip header has Options
+			m_nTransportLayerOffset = 36;
 			std::cout << "ip header has Options" << std::endl;
 		}
 		std::cout << "===============================" << std::endl;
-	}
+	//}
 
 	return hRes;
 }

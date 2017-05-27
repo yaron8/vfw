@@ -7,13 +7,17 @@
 #include <netinet/tcp.h>   //Provides declarations for tcp header
 #include <netinet/ip.h>    //Provides declarations for ip header
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
 #include "CBaseFacade.h"
 #include "CNetworkTypes.h"
+#include "CTransportLayerProtocol.h"
 #include "CPacketDetails.h"
+
+
 
 void ProcessPacket(BU8* , const BU32&);
 void PrintIpHeader(unsigned char* , int);
@@ -51,10 +55,22 @@ int main()
     printf("Starting...\n");
     //Create a raw socket that shall sniff
     sock_raw = socket(AF_INET , SOCK_RAW , IPPROTO_TCP);
+
     if(sock_raw < 0)
     {
         printf("Socket Error\n");
         return 1;
+    }
+
+
+	/*int v=0;
+    v = PACKET_MASK_ANY & ~(1<<PACKET_OUTGOING) & ~(1 << PACKET_LOOPBACK);*/
+    int one = 1;
+    const int* val = &one;
+    if(setsockopt(sock_raw, IPPROTO_IP, IP_HDRINCL, val, sizeof(one)) < 0)
+    {
+    	std::cout << "failed to setsockopt" << std::endl;
+    	return 0;
     }
 
     for(;;)

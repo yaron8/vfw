@@ -11,6 +11,7 @@
 #include "CBaseFacade.h"
 #include "CNetworkTypes.h"
 #include "SIpLayer.h"
+#include "CTransportLayerProtocol.h"
 
 class CPacketDetails
 {
@@ -31,6 +32,8 @@ private:
 	BU16 m_nDestPort;
 
 	SIpLayer m_ipLayer;
+	CTransportLayerProtocol* m_pTransportLayer;
+
 
 	BU16 m_nApllicationLayerLength;
 	BU8* m_pApplicationLayer;

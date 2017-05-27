@@ -31,6 +31,7 @@ struct SIpLayer
 	BU8			m_nTransportLayerProtocol;
 	CIpAddress	m_srcIpAddress;
 	CIpAddress	m_destIpAddress;
+	BU16 		m_nTransportLayerOffset;
 
 };
 

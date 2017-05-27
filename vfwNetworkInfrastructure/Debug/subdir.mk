@@ -6,18 +6,24 @@
 CPP_SRCS += \
 ../CIpAddress.cpp \
 ../CPacketDetails.cpp \
+../CTcpTransportLayer.cpp \
+../CTransportLayerProtocol.cpp \
 ../SIpLayer.cpp \
 ../main.cpp 
 
 OBJS += \
 ./CIpAddress.o \
 ./CPacketDetails.o \
+./CTcpTransportLayer.o \
+./CTransportLayerProtocol.o \
 ./SIpLayer.o \
 ./main.o 
 
 CPP_DEPS += \
 ./CIpAddress.d \
 ./CPacketDetails.d \
+./CTcpTransportLayer.d \
+./CTransportLayerProtocol.d \
 ./SIpLayer.d \
 ./main.d 
 
